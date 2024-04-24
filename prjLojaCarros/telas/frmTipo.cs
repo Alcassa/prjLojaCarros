@@ -11,26 +11,26 @@ using System.Windows.Forms;
 
 namespace prjLojaCarros.telas
 {
-    public partial class frmMarca : Form
+    public partial class frmTipo : Form
     {
         int registrosAtual = 0;
         int totalRegistros = 0;
         String connectionString = @"Server=darnassus\motorhead;Database=db_230593;User Id=230593;Password=12345678";
         bool novo;
-        DataTable dtMarca = new DataTable();
-        public frmMarca()
+        DataTable dtTipo = new DataTable();
+        public frmTipo()
         {
             InitializeComponent();
         }
         private void navegar()
         {
-            txtCodMarca.Text = dtMarca.Rows[registrosAtual][0].ToString();
-            txtMarca.Text = dtMarca.Rows[registrosAtual][1].ToString();
+            txtCodTipo.Text = dtTipo.Rows[registrosAtual][0].ToString();
+            txtTipo.Text = dtTipo.Rows[registrosAtual][1].ToString();
         }
         private void carregar()
         {
-            dtMarca = new DataTable();
-            string sql = "SELECT *FROM Marca";
+            dtTipo = new DataTable();
+            string sql = "SELECT *FROM Tipo";
             SqlConnection con = new SqlConnection(connectionString);
             SqlCommand cmd = new SqlCommand(sql, con);
             cmd.CommandType = CommandType.Text;
@@ -40,8 +40,8 @@ namespace prjLojaCarros.telas
             {
                 using (reader = cmd.ExecuteReader())
                 {
-                    dtMarca.Load(reader);
-                    totalRegistros = dtMarca.Rows.Count;
+                    dtTipo.Load(reader);
+                    totalRegistros = dtTipo.Rows.Count;
                     registrosAtual = 0;
                     navegar();
                 }
@@ -55,18 +55,53 @@ namespace prjLojaCarros.telas
 
         }
 
-        private void frmMarca_Load(object sender, EventArgs e)
+        private void frmTipo_Load(object sender, EventArgs e)
         {
             carregar();
-            btnSalvar.Enabled = false;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnPrimeiro_Click(object sender, EventArgs e)
+        {
+            if (registrosAtual > 0)
+            {
+                registrosAtual = 0;
+                navegar();
+            }
+        }
+
+        private void btnAnterior_Click(object sender, EventArgs e)
+        {
+            if (registrosAtual > 0)
+            {
+                registrosAtual--;
+                navegar();
+            }
+        }
+
+        private void btnProximo_Click(object sender, EventArgs e)
+        {
+            if (registrosAtual < totalRegistros - 1)
+            {
+                registrosAtual++;
+                navegar();
+            }
+        }
+
+        private void btnUltimo_Click(object sender, EventArgs e)
+        {
+            if (registrosAtual < totalRegistros - 1)
+            {
+                registrosAtual = totalRegistros - 1;
+                navegar();
+            }
+        }
+
+        private void btnSalvar_Click(object sender, EventArgs e)
         {
             if (novo)
             {
-                string sql = "INSERT INTO Marca(Marca)" +
-                    $"VALUES('{txtMarca.Text}')";
+                string sql = "INSERT INTO Tipo(Tipo)" +
+                    $"VALUES('{txtTipo.Text}')";
                 // MessageBox.Show(sql);
                 var con = new SqlConnection(connectionString);
                 var cmd = new SqlCommand(sql, con);
@@ -77,7 +112,7 @@ namespace prjLojaCarros.telas
                     int i = cmd.ExecuteNonQuery();
                     if (i > 0)
                     {
-                        MessageBox.Show("Marca cadastrda com sucesso");
+                        MessageBox.Show("cadastrda com sucesso");
                     }
                 }
                 catch (Exception ex)
@@ -92,7 +127,7 @@ namespace prjLojaCarros.telas
             }
             else
             {
-                string sql = $"UPDATE Marca SET Marca='{txtMarca.Text}' WHERE codMarca={txtCodMarca.Text}";
+                string sql = $"UPDATE Tipo SET Tipo='{txtTipo.Text}' WHERE codTipo={txtCodTipo.Text}";
                 var con = new SqlConnection(connectionString);
                 var cmd = new SqlCommand(sql, con);
                 cmd.CommandType = CommandType.Text;
@@ -102,7 +137,7 @@ namespace prjLojaCarros.telas
                     int i = cmd.ExecuteNonQuery();
                     if (i > 0)
                     {
-                        MessageBox.Show("Produtora alterada com sucesso!!!");
+                        MessageBox.Show("Tipo alterado com sucesso!!!");
                     }
                 }
                 catch (Exception ex)
@@ -125,14 +160,15 @@ namespace prjLojaCarros.telas
             btnSalvar.Enabled = false;
             carregar();
         }
+
         private void btnAlterar_Click(object sender, EventArgs e)
         {
             novo = false;
             btnNovo.Enabled = false;
             btnExcluir.Enabled = false;
             btnSalvar.Enabled = true;
-            txtCodMarca.Enabled = false;
-            txtMarca.Enabled = true;
+            txtTipo.Enabled = true;
+            txtCodTipo.Enabled = false;
             btnPrimeiro.Enabled = false;
             btnAnterior.Enabled = false;
             btnUltimo.Enabled = false;
@@ -142,9 +178,9 @@ namespace prjLojaCarros.telas
         {
             btnNovo.Enabled = false;
             btnSalvar.Enabled = true;
-            txtMarca.Text = "";
-            txtCodMarca.Text = "";
-            txtCodMarca.Enabled = false;
+            txtCodTipo.Text = "";
+            txtTipo.Text = "";
+            txtCodTipo.Enabled = false;
             btnProximo.Enabled = false;
             btnUltimo.Enabled = false;
             btnAnterior.Enabled = false;
@@ -152,12 +188,13 @@ namespace prjLojaCarros.telas
             btnExcluir.Enabled = false;
             btnPrimeiro.Enabled = false;
             novo = true;
-            txtMarca.Focus();
+            txtTipo.Focus();
         }
+
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            string sql = $"DELETE FROM Marca WHERE" +
-               $" codMarca={txtCodMarca.Text}";
+            string sql = $"DELETE FROM Tipo WHERE" +
+   $" codTipo={txtCodTipo.Text}";
             var con = new SqlConnection(connectionString);
             var cmd = new SqlCommand(sql, con);
             cmd.CommandType = CommandType.Text;
@@ -177,45 +214,6 @@ namespace prjLojaCarros.telas
             }
             finally { con.Close(); }
             carregar();
-
         }
-
-        private void btnProximo_Click(object sender, EventArgs e)
-        {
-            if (registrosAtual < totalRegistros - 1)
-            {
-                registrosAtual++;
-                navegar();
-            }
-        }
-
-        private void btnUltimo_Click(object sender, EventArgs e)
-        {
-            if (registrosAtual < totalRegistros - 1)
-            {
-                registrosAtual = totalRegistros - 1;
-                navegar();
-            }
-        }
-
-        private void btnAnterior_Click(object sender, EventArgs e)
-        {
-            if (registrosAtual > 0)
-            {
-                registrosAtual--;
-                navegar();
-            }
-        }
-
-        private void btnPrimeiro_Click(object sender, EventArgs e)
-        {
-            if (registrosAtual > 0)
-            {
-                registrosAtual = 0;
-                navegar();
-            }
-        }
-
-        
     }
 }
