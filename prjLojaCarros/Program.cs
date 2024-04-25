@@ -17,7 +17,7 @@ namespace prjLojaCarros
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmTipo());
+            Application.Run(new Veiculo());
         }
     }
 }

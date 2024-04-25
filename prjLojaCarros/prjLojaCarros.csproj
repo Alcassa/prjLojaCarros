@@ -66,6 +66,12 @@
     <Compile Include="telas\frmTipo.Designer.cs">
       <DependentUpon>frmTipo.cs</DependentUpon>
     </Compile>
+    <Compile Include="telas\Veiculo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="telas\Veiculo.Designer.cs">
+      <DependentUpon>Veiculo.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -84,6 +90,9 @@
     <EmbeddedResource Include="telas\frmTipo.resx">
       <DependentUpon>frmTipo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="telas\Veiculo.resx">
+      <DependentUpon>Veiculo.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -97,5 +106,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
