@@ -15,7 +15,7 @@ namespace prjLojaCarros.telas
     {
         int registrosAtual = 0;
         int totalRegistros = 0;
-        String connectionString = @"server=DESKTOP-N49O510\SQLEXPRESS;Initial Catalog=Alcassa;Integrated Security=True;Encrypt=False";
+        String connectionString = @"server=darnassus\motorhead;Database=db_230593; User Id=230593; Password=12345678";
         bool novo;
         DataTable dtVeiculo = new DataTable();
         DataTable dtTipo=new DataTable();
@@ -30,13 +30,15 @@ namespace prjLojaCarros.telas
             txtCodVeiculo.Text = dtVeiculo.Rows[registrosAtual][0].ToString();
             txtModelo.Text = dtVeiculo.Rows[registrosAtual][1].ToString();
             txtAno.Text = dtVeiculo.Rows[registrosAtual][2].ToString();
-            carregarComboMarca();
-            carregarComboTipo();
+            cmbMarca.Text = dtVeiculo.Rows[registrosAtual][3].ToString();
+            cmbTipo.Text = dtVeiculo.Rows[registrosAtual][4].ToString();
         }
         private void carregar()
         {
             dtVeiculo = new DataTable();
-            string sql = "SELECT *FROM Tipo";
+            string sql = "SELECT codVeiculo, modeloVeiculo, anoVeiculo, Marca, Tipo FROM Veiculoo v " +
+                         "INNER JOIN Marca m ON m.codMarca = v.codMarca " +
+                         "INNER JOIN Tipo t ON t.codTipo = v.codTipo";
             SqlConnection con = new SqlConnection(connectionString);
             SqlCommand cmd = new SqlCommand(sql, con);
             cmd.CommandType = CommandType.Text;
@@ -46,7 +48,7 @@ namespace prjLojaCarros.telas
             {
                 using (reader = cmd.ExecuteReader())
                 {
-                     dtVeiculo.Load(reader);
+                    dtVeiculo.Load(reader);
                     totalRegistros = dtVeiculo.Rows.Count;
                     registrosAtual = 0;
                     navegar();
@@ -63,7 +65,7 @@ namespace prjLojaCarros.telas
         private void carregarComboMarca()
         {
             dtMarca = new DataTable();
-            string sql = $"SELECT *FROM Marca where codMarca=" + dtVeiculo.Rows[registrosAtual][0].ToString();
+            string sql = "SELECT * FROM Marca";
             SqlConnection con = new SqlConnection(connectionString);
             SqlCommand cmd = new SqlCommand(sql, con);
             cmd.CommandType = CommandType.Text;
@@ -90,7 +92,7 @@ namespace prjLojaCarros.telas
         private void carregarComboTipo()
         {
             dtVeiculo = new DataTable();
-            string sql = $"SELECT *FROM Tipo where codTipo=" + dtVeiculo.Rows[registrosAtual][4].ToString();
+            string sql = "SELECT * FROM Tipo";
             SqlConnection con = new SqlConnection(connectionString);
             SqlCommand cmd = new SqlCommand(sql, con);
             cmd.CommandType = CommandType.Text;
