@@ -264,6 +264,7 @@
             this.Controls.Add(this.btnAlterar);
             this.Controls.Add(this.btnSalvar);
             this.Name = "Veiculo";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Veiculo";
             this.Load += new System.EventHandler(this.Veiculo_Load);
             this.groupBox1.ResumeLayout(false);

@@ -15,7 +15,7 @@ namespace prjLojaCarros.telas
     {
         int registrosAtual = 0;
         int totalRegistros = 0;
-        String connectionString = @"server=AlcassaDB.mssql.somee.com;Database=AlcassaDB; User Id=Alcassa_SQLLogin_1; Password=pihy8q3hhx";
+        String connectionString = @"";
         bool novo;
         DataTable dtVeiculo = new DataTable();
         DataTable dtTipo=new DataTable();
@@ -175,7 +175,6 @@ namespace prjLojaCarros.telas
                 finally
                 {
                     con.Close();
-                    navegar();
                 }
             }
             else
@@ -216,6 +215,7 @@ namespace prjLojaCarros.telas
             cmbTipo.Enabled = false;
             cmbMarca.Enabled = false;
             carregar();
+            navegar();
         }
 
         private void btnAlterar_Click(object sender, EventArgs e)

@@ -51,9 +51,11 @@ namespace prjLojaCarros.telas
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtCodTipo);
             this.groupBox1.Controls.Add(this.txtTipo);
-            this.groupBox1.Location = new System.Drawing.Point(85, 134);
+            this.groupBox1.Location = new System.Drawing.Point(57, 87);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(630, 190);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Size = new System.Drawing.Size(420, 123);
             this.groupBox1.TabIndex = 19;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Dados Marca";
@@ -61,40 +63,45 @@ namespace prjLojaCarros.telas
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(346, 56);
+            this.label2.Location = new System.Drawing.Point(231, 36);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(39, 20);
+            this.label2.Size = new System.Drawing.Size(28, 13);
             this.label2.TabIndex = 3;
             this.label2.Text = "Tipo";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(153, 56);
+            this.label1.Location = new System.Drawing.Point(102, 36);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(72, 20);
+            this.label1.Size = new System.Drawing.Size(50, 13);
             this.label1.TabIndex = 2;
             this.label1.Text = "Cod Tipo";
             // 
             // txtCodTipo
             // 
-            this.txtCodTipo.Location = new System.Drawing.Point(157, 79);
+            this.txtCodTipo.Location = new System.Drawing.Point(105, 51);
+            this.txtCodTipo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtCodTipo.Name = "txtCodTipo";
-            this.txtCodTipo.Size = new System.Drawing.Size(100, 26);
+            this.txtCodTipo.Size = new System.Drawing.Size(68, 20);
             this.txtCodTipo.TabIndex = 0;
             // 
             // txtTipo
             // 
-            this.txtTipo.Location = new System.Drawing.Point(350, 79);
+            this.txtTipo.Location = new System.Drawing.Point(233, 51);
+            this.txtTipo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtTipo.Name = "txtTipo";
-            this.txtTipo.Size = new System.Drawing.Size(100, 26);
+            this.txtTipo.Size = new System.Drawing.Size(68, 20);
             this.txtTipo.TabIndex = 1;
             // 
             // btnUltimo
             // 
-            this.btnUltimo.Location = new System.Drawing.Point(501, 330);
+            this.btnUltimo.Location = new System.Drawing.Point(334, 214);
+            this.btnUltimo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnUltimo.Name = "btnUltimo";
-            this.btnUltimo.Size = new System.Drawing.Size(75, 40);
+            this.btnUltimo.Size = new System.Drawing.Size(50, 26);
             this.btnUltimo.TabIndex = 18;
             this.btnUltimo.Text = ">>";
             this.btnUltimo.UseVisualStyleBackColor = true;
@@ -102,9 +109,10 @@ namespace prjLojaCarros.telas
             // 
             // btnProximo
             // 
-            this.btnProximo.Location = new System.Drawing.Point(403, 330);
+            this.btnProximo.Location = new System.Drawing.Point(269, 214);
+            this.btnProximo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnProximo.Name = "btnProximo";
-            this.btnProximo.Size = new System.Drawing.Size(75, 40);
+            this.btnProximo.Size = new System.Drawing.Size(50, 26);
             this.btnProximo.TabIndex = 17;
             this.btnProximo.Text = ">";
             this.btnProximo.UseVisualStyleBackColor = true;
@@ -112,9 +120,10 @@ namespace prjLojaCarros.telas
             // 
             // btnAnterior
             // 
-            this.btnAnterior.Location = new System.Drawing.Point(308, 330);
+            this.btnAnterior.Location = new System.Drawing.Point(205, 214);
+            this.btnAnterior.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAnterior.Name = "btnAnterior";
-            this.btnAnterior.Size = new System.Drawing.Size(75, 40);
+            this.btnAnterior.Size = new System.Drawing.Size(50, 26);
             this.btnAnterior.TabIndex = 16;
             this.btnAnterior.Text = "<";
             this.btnAnterior.UseVisualStyleBackColor = true;
@@ -122,9 +131,10 @@ namespace prjLojaCarros.telas
             // 
             // btnPrimeiro
             // 
-            this.btnPrimeiro.Location = new System.Drawing.Point(200, 330);
+            this.btnPrimeiro.Location = new System.Drawing.Point(133, 214);
+            this.btnPrimeiro.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnPrimeiro.Name = "btnPrimeiro";
-            this.btnPrimeiro.Size = new System.Drawing.Size(75, 40);
+            this.btnPrimeiro.Size = new System.Drawing.Size(50, 26);
             this.btnPrimeiro.TabIndex = 15;
             this.btnPrimeiro.Text = "<<";
             this.btnPrimeiro.UseVisualStyleBackColor = true;
@@ -132,9 +142,10 @@ namespace prjLojaCarros.telas
             // 
             // btnExcluir
             // 
-            this.btnExcluir.Location = new System.Drawing.Point(501, 80);
+            this.btnExcluir.Location = new System.Drawing.Point(334, 52);
+            this.btnExcluir.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnExcluir.Name = "btnExcluir";
-            this.btnExcluir.Size = new System.Drawing.Size(75, 48);
+            this.btnExcluir.Size = new System.Drawing.Size(50, 31);
             this.btnExcluir.TabIndex = 14;
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.UseVisualStyleBackColor = true;
@@ -142,9 +153,10 @@ namespace prjLojaCarros.telas
             // 
             // btnNovo
             // 
-            this.btnNovo.Location = new System.Drawing.Point(400, 80);
+            this.btnNovo.Location = new System.Drawing.Point(267, 52);
+            this.btnNovo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnNovo.Name = "btnNovo";
-            this.btnNovo.Size = new System.Drawing.Size(75, 48);
+            this.btnNovo.Size = new System.Drawing.Size(50, 31);
             this.btnNovo.TabIndex = 13;
             this.btnNovo.Text = "Novo";
             this.btnNovo.UseVisualStyleBackColor = true;
@@ -152,9 +164,10 @@ namespace prjLojaCarros.telas
             // 
             // btnAlterar
             // 
-            this.btnAlterar.Location = new System.Drawing.Point(288, 80);
+            this.btnAlterar.Location = new System.Drawing.Point(192, 52);
+            this.btnAlterar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAlterar.Name = "btnAlterar";
-            this.btnAlterar.Size = new System.Drawing.Size(75, 48);
+            this.btnAlterar.Size = new System.Drawing.Size(50, 31);
             this.btnAlterar.TabIndex = 12;
             this.btnAlterar.Text = "Alterar";
             this.btnAlterar.UseVisualStyleBackColor = true;
@@ -162,9 +175,10 @@ namespace prjLojaCarros.telas
             // 
             // btnSalvar
             // 
-            this.btnSalvar.Location = new System.Drawing.Point(180, 80);
+            this.btnSalvar.Location = new System.Drawing.Point(120, 52);
+            this.btnSalvar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnSalvar.Name = "btnSalvar";
-            this.btnSalvar.Size = new System.Drawing.Size(75, 48);
+            this.btnSalvar.Size = new System.Drawing.Size(50, 31);
             this.btnSalvar.TabIndex = 11;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.UseVisualStyleBackColor = true;
@@ -172,9 +186,9 @@ namespace prjLojaCarros.telas
             // 
             // frmTipo
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(533, 292);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnUltimo);
             this.Controls.Add(this.btnProximo);
@@ -184,7 +198,9 @@ namespace prjLojaCarros.telas
             this.Controls.Add(this.btnNovo);
             this.Controls.Add(this.btnAlterar);
             this.Controls.Add(this.btnSalvar);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmTipo";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmTipo";
             this.Load += new System.EventHandler(this.frmTipo_Load);
             this.groupBox1.ResumeLayout(false);

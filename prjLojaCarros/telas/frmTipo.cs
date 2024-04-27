@@ -15,7 +15,7 @@ namespace prjLojaCarros.telas
     {
         int registrosAtual = 0;
         int totalRegistros = 0;
-        String connectionString = @"server=AlcassaDB.mssql.somee.com;Database=AlcassaDB; User Id=Alcassa_SQLLogin_1; Password=pihy8q3hhx";
+        String connectionString = @"";
         bool novo;
         DataTable dtTipo = new DataTable();
         public frmTipo()
