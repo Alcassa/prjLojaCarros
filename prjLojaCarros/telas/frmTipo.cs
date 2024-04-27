@@ -15,7 +15,7 @@ namespace prjLojaCarros.telas
     {
         int registrosAtual = 0;
         int totalRegistros = 0;
-        String connectionString = @"server=darnassus\motorhead;Database=db_230593; User Id=230593; Password=12345678";
+        String connectionString = @"server=AlcassaDB.mssql.somee.com;Database=AlcassaDB; User Id=Alcassa_SQLLogin_1; Password=pihy8q3hhx";
         bool novo;
         DataTable dtTipo = new DataTable();
         public frmTipo()
@@ -58,6 +58,8 @@ namespace prjLojaCarros.telas
         private void frmTipo_Load(object sender, EventArgs e)
         {
             carregar();
+            txtCodTipo.Enabled= false;
+            txtTipo.Enabled= false;
         }
 
         private void btnPrimeiro_Click(object sender, EventArgs e)
@@ -102,7 +104,6 @@ namespace prjLojaCarros.telas
             {
                 string sql = "INSERT INTO Tipo(Tipo)" +
                     $"VALUES('{txtTipo.Text}')";
-                // MessageBox.Show(sql);
                 var con = new SqlConnection(connectionString);
                 var cmd = new SqlCommand(sql, con);
                 cmd.CommandType = CommandType.Text;
@@ -123,7 +124,7 @@ namespace prjLojaCarros.telas
                 {
                     con.Close();
                 }
-
+             
             }
             else
             {
@@ -158,6 +159,8 @@ namespace prjLojaCarros.telas
             btnExcluir.Enabled = true;
             btnNovo.Enabled = true;
             btnSalvar.Enabled = false;
+            txtCodTipo.Enabled = false;
+            txtTipo.Enabled = false;
             carregar();
         }
 
@@ -180,6 +183,7 @@ namespace prjLojaCarros.telas
             btnSalvar.Enabled = true;
             txtCodTipo.Text = "";
             txtTipo.Text = "";
+            txtTipo.Enabled = true;
             txtCodTipo.Enabled = false;
             btnProximo.Enabled = false;
             btnUltimo.Enabled = false;
@@ -214,6 +218,8 @@ namespace prjLojaCarros.telas
             }
             finally { con.Close(); }
             carregar();
+            txtCodTipo.Enabled = false;
+            txtTipo.Enabled = false;
         }
     }
 }

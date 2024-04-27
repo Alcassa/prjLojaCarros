@@ -1,8 +1,4 @@
-﻿using prjLojaCarros.telas;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Forms;
 
 namespace prjLojaCarros
@@ -17,7 +13,7 @@ namespace prjLojaCarros
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Veiculo());
+            Application.Run(new Form1());
         }
     }
 }

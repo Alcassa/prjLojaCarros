@@ -15,7 +15,7 @@ namespace prjLojaCarros.telas
     {
         int registrosAtual = 0;
         int totalRegistros = 0;
-        String connectionString = @"server=darnassus\motorhead;Database=db_230593; User Id=230593; Password=12345678";
+        String connectionString = @"server=AlcassaDB.mssql.somee.com;Database=AlcassaDB; User Id=Alcassa_SQLLogin_1; Password=";
         bool novo;
         DataTable dtMarca = new DataTable();
         public frmMarca()
@@ -59,6 +59,8 @@ namespace prjLojaCarros.telas
         {
             carregar();
             btnSalvar.Enabled = false;
+            txtCodMarca.Enabled = false;
+            txtMarca.Enabled = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -123,6 +125,8 @@ namespace prjLojaCarros.telas
             btnExcluir.Enabled = true;
             btnNovo.Enabled = true;
             btnSalvar.Enabled = false;
+            txtCodMarca.Enabled = false;
+            txtMarca.Enabled = false;
             carregar();
         }
         private void btnAlterar_Click(object sender, EventArgs e)
@@ -145,6 +149,7 @@ namespace prjLojaCarros.telas
             txtMarca.Text = "";
             txtCodMarca.Text = "";
             txtCodMarca.Enabled = false;
+            txtMarca.Enabled = true;
             btnProximo.Enabled = false;
             btnUltimo.Enabled = false;
             btnAnterior.Enabled = false;
@@ -177,7 +182,8 @@ namespace prjLojaCarros.telas
             }
             finally { con.Close(); }
             carregar();
-
+            txtCodMarca.Enabled = false;
+            txtMarca.Enabled = false;
         }
 
         private void btnProximo_Click(object sender, EventArgs e)

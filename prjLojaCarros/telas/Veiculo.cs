@@ -15,7 +15,7 @@ namespace prjLojaCarros.telas
     {
         int registrosAtual = 0;
         int totalRegistros = 0;
-        String connectionString = @"server=darnassus\motorhead;Database=db_230593; User Id=230593; Password=12345678";
+        String connectionString = @"server=AlcassaDB.mssql.somee.com;Database=AlcassaDB; User Id=Alcassa_SQLLogin_1; Password=pihy8q3hhx";
         bool novo;
         DataTable dtVeiculo = new DataTable();
         DataTable dtTipo=new DataTable();
@@ -27,13 +27,13 @@ namespace prjLojaCarros.telas
         }
         private void navegar()
         {
+            carregarComboMarca();
+            carregarComboTipo();
             txtCodVeiculo.Text = dtVeiculo.Rows[registrosAtual][0].ToString();
             txtModelo.Text = dtVeiculo.Rows[registrosAtual][1].ToString();
             txtAno.Text = dtVeiculo.Rows[registrosAtual][2].ToString();
             cmbMarca.Text = dtVeiculo.Rows[registrosAtual][3].ToString();
             cmbTipo.Text = dtVeiculo.Rows[registrosAtual][4].ToString();
-            carregarComboMarca();
-            carregarComboTipo();
         }
         private void carregar()
         {
@@ -121,6 +121,11 @@ namespace prjLojaCarros.telas
         private void Veiculo_Load(object sender, EventArgs e)
         {
             carregar();
+            txtCodVeiculo.Enabled = false;
+            txtModelo.Enabled = false;  
+            txtAno.Enabled = false;
+            cmbTipo.Enabled = false;
+            cmbMarca.Enabled = false;
         }
 
         private void btnNovo_Click(object sender, EventArgs e)
@@ -129,7 +134,6 @@ namespace prjLojaCarros.telas
             btnSalvar.Enabled = true;
             txtCodVeiculo.Text = "";
             txtAno.Text = "";
-            txtCodVeiculo.Enabled = false;
             btnProximo.Enabled = false;
             btnUltimo.Enabled = false;
             btnAnterior.Enabled = false;
@@ -137,34 +141,160 @@ namespace prjLojaCarros.telas
             btnExcluir.Enabled = false;
             btnPrimeiro.Enabled = false;
             novo = true;
+            txtCodVeiculo.Enabled = false;
+            txtModelo.Enabled = true;
+            txtAno.Enabled = true;
+            cmbTipo.Enabled = true;
+            cmbMarca.Enabled = true;
             txtModelo.Focus();
+            
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            string sql = "INSERT INTO Veiculoo(modeloVeiculo, anoVeiculo, codMarca, codTipo)"+
-                $"VALUES('{txtModelo.Text}','{txtAno.Text}','{cmbMarca.SelectedValue}','{cmbTipo.SelectedValue}')";
-            SqlConnection con = new SqlConnection(connectionString);
-            SqlCommand cmd = new SqlCommand(sql, con);
+            if (novo)
+            {
+                string sql = "INSERT INTO Veiculoo(modeloVeiculo, anoVeiculo, codMarca, codTipo)" +
+                    $"VALUES('{txtModelo.Text}','{txtAno.Text}','{cmbMarca.SelectedValue}','{cmbTipo.SelectedValue}')";
+                SqlConnection con = new SqlConnection(connectionString);
+                SqlCommand cmd = new SqlCommand(sql, con);
+                cmd.CommandType = CommandType.Text;
+                con.Open();
+                try
+                {
+                    int i = cmd.ExecuteNonQuery();
+                    if (i > 0)
+                    {
+                        MessageBox.Show("cadastrda com sucesso");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro: " + ex.ToString());
+                }
+                finally
+                {
+                    con.Close();
+                    navegar();
+                }
+            }
+            else
+            {
+              string sql = $"UPDATE Veiculoo SET modeloVeiculo='{txtModelo.Text}',anoVeiculo='{txtAno.Text}',codMarca={cmbMarca.SelectedValue},codTipo={cmbTipo.SelectedValue} WHERE codVeiculo={txtCodVeiculo.Text}";
+                var con = new SqlConnection(connectionString);
+                var cmd = new SqlCommand(sql, con);
+                cmd.CommandType = CommandType.Text;
+                con.Open();
+                try
+                {
+                    int i = cmd.ExecuteNonQuery();
+                    if (i > 0)
+                    {
+                        MessageBox.Show("Veiculo alterado com sucesso!!!");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro :" + ex.ToString());
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+            btnPrimeiro.Enabled = true;
+            btnProximo.Enabled = true;
+            btnUltimo.Enabled = true;
+            btnAnterior.Enabled = true;
+            btnAlterar.Enabled = true;
+            btnExcluir.Enabled = true;
+            btnNovo.Enabled = true;
+            btnSalvar.Enabled = false;
+            txtCodVeiculo.Enabled = false;
+            txtModelo.Enabled = false;
+            txtAno.Enabled = false;
+            cmbTipo.Enabled = false;
+            cmbMarca.Enabled = false;
+            carregar();
+        }
+
+        private void btnAlterar_Click(object sender, EventArgs e)
+        {
+            novo = false; 
+            btnNovo.Enabled = false;
+            btnExcluir.Enabled = false;
+            btnSalvar.Enabled = true;
+            btnPrimeiro.Enabled = false;
+            btnAnterior.Enabled = false; 
+            btnUltimo.Enabled = false;
+            txtCodVeiculo.Enabled = true;
+            txtModelo.Enabled = true;
+            txtAno.Enabled = true;
+            cmbTipo.Enabled = true;
+            cmbMarca.Enabled = true;
+            
+            
+        }
+
+        private void btnPrimeiro_Click(object sender, EventArgs e)
+        {
+            if (registrosAtual > 0)
+            {
+                registrosAtual = 0;
+                navegar();
+            }
+        }
+
+        private void btnAnterior_Click(object sender, EventArgs e)
+        {
+            if (registrosAtual > 0)
+            {
+                registrosAtual--;
+                navegar();
+            }
+        }
+
+        private void btnProximo_Click(object sender, EventArgs e)
+        {
+            if (registrosAtual < totalRegistros - 1)
+            {
+                registrosAtual++;
+                navegar();
+            }
+        }
+
+        private void btnUltimo_Click(object sender, EventArgs e)
+        {
+            if (registrosAtual < totalRegistros - 1)
+            {
+                registrosAtual = totalRegistros - 1;
+                navegar();
+            }
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            string sql = $"DELETE FROM Veiculoo WHERE" +
+   $" codVeiculo={txtCodVeiculo.Text}";
+            var con = new SqlConnection(connectionString);
+            var cmd = new SqlCommand(sql, con);
             cmd.CommandType = CommandType.Text;
-            SqlDataReader reader;
             con.Open();
             try
             {
                 int i = cmd.ExecuteNonQuery();
                 if (i > 0)
                 {
-                    MessageBox.Show("cadastrda com sucesso");
+                    MessageBox.Show("Excluido com sucesso");
                 }
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro: " + ex.ToString());
+                MessageBox.Show("Erro :" + ex.ToString());
             }
-            finally
-            {
-                con.Close();
-            }
+            finally { con.Close(); }
+            carregar();
         }
     }
 }
