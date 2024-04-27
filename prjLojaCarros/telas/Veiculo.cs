@@ -32,6 +32,8 @@ namespace prjLojaCarros.telas
             txtAno.Text = dtVeiculo.Rows[registrosAtual][2].ToString();
             cmbMarca.Text = dtVeiculo.Rows[registrosAtual][3].ToString();
             cmbTipo.Text = dtVeiculo.Rows[registrosAtual][4].ToString();
+            carregarComboMarca();
+            carregarComboTipo();
         }
         private void carregar()
         {
@@ -91,7 +93,7 @@ namespace prjLojaCarros.telas
         }
         private void carregarComboTipo()
         {
-            dtVeiculo = new DataTable();
+            dtTipo = new DataTable();
             string sql = "SELECT * FROM Tipo";
             SqlConnection con = new SqlConnection(connectionString);
             SqlCommand cmd = new SqlCommand(sql, con);
@@ -102,7 +104,7 @@ namespace prjLojaCarros.telas
             {
                 using (reader = cmd.ExecuteReader())
                 {
-                    dtVeiculo.Load(reader);
+                    dtTipo.Load(reader);
 
                 }
             }
@@ -111,12 +113,58 @@ namespace prjLojaCarros.telas
                 MessageBox.Show("Error " + ex.Message);
             }
             finally { con.Close(); }
-
+            cmbTipo.DataSource = dtTipo;
+            cmbTipo.DisplayMember = "Tipo";
+            cmbTipo.ValueMember = "codTipo";
         }
 
         private void Veiculo_Load(object sender, EventArgs e)
         {
             carregar();
+        }
+
+        private void btnNovo_Click(object sender, EventArgs e)
+        {
+            btnNovo.Enabled = false;
+            btnSalvar.Enabled = true;
+            txtCodVeiculo.Text = "";
+            txtAno.Text = "";
+            txtCodVeiculo.Enabled = false;
+            btnProximo.Enabled = false;
+            btnUltimo.Enabled = false;
+            btnAnterior.Enabled = false;
+            btnAlterar.Enabled = false;
+            btnExcluir.Enabled = false;
+            btnPrimeiro.Enabled = false;
+            novo = true;
+            txtModelo.Focus();
+        }
+
+        private void btnSalvar_Click(object sender, EventArgs e)
+        {
+            string sql = "INSERT INTO Veiculoo(modeloVeiculo, anoVeiculo, codMarca, codTipo)"+
+                $"VALUES('{txtModelo.Text}','{txtAno.Text}','{cmbMarca.SelectedValue}','{cmbTipo.SelectedValue}')";
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand(sql, con);
+            cmd.CommandType = CommandType.Text;
+            SqlDataReader reader;
+            con.Open();
+            try
+            {
+                int i = cmd.ExecuteNonQuery();
+                if (i > 0)
+                {
+                    MessageBox.Show("cadastrda com sucesso");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro: " + ex.ToString());
+            }
+            finally
+            {
+                con.Close();
+            }
         }
     }
 }

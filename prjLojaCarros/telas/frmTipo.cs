@@ -15,7 +15,7 @@ namespace prjLojaCarros.telas
     {
         int registrosAtual = 0;
         int totalRegistros = 0;
-        String connectionString = @"server=DESKTOP-N49O510\SQLEXPRESS;Initial Catalog=Alcassa;Integrated Security=True;Encrypt=False";
+        String connectionString = @"server=darnassus\motorhead;Database=db_230593; User Id=230593; Password=12345678";
         bool novo;
         DataTable dtTipo = new DataTable();
         public frmTipo()
